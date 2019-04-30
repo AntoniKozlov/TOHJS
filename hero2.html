@@ -6,7 +6,7 @@
   <link href="h.css" type="text/css" media="screen" rel="stylesheet">
 	<link href="herodetail.css" type="text/css" media="screen" rel="stylesheet">
 	<title>AngularTourOfHeroes</title>
-  <script src="myherojs.js"></script>
+  
 </head>
 <body>
 
@@ -29,7 +29,7 @@
       <input id="changenamehero" onkeyup="chan()" style="text-transform: capitalize;" placeholder="name"/>
     </label>
   </div>
-  <a href="hero.html"><button>go back</button></a>
+  <a href="hero.html"><button onclick="goback()">go back</button></a>
   <a href="hero.html"><button  onclick="save()">save</button></a>
   <script type="text/javascript">
     var rh = document.location.href.split ('?');
@@ -42,9 +42,19 @@
 
    function save() {
     var sv=document.getElementById("changenamehero").value;
+    console.log(rh[2] +" "+ sv);
+     localStorage.setItem('li'+rh[2], sv); 
    document.location.href = 'hero.html?'+sv+'?'+rh[2];
-
+ 
    }
+   function goback() {
+     
+    var sv=document.getElementById("changenamehero").value;
+    localStorage.setItem('li'+rh[2], sv); 
+   document.location.href = 'hero.html?'+rh[1]+'?'+rh[2];
+  
+   }
+   
   </script>
 </div>
 

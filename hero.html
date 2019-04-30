@@ -20,7 +20,7 @@
 
 <div>
   <label>Hero name:
-    <input type="text" id="hero" />
+    <input type="text" id="hero" onkeyup="check();"/>
   </label>
   <!-- (click) passes input value to add() and then clears the input -->
  
@@ -32,7 +32,7 @@
 
  
 
-  <button type="submit" onclick ="add_input();">
+  <button type="submit" id="addsubmit"  onclick ="add_input();" disabled>
     add
   </button>
 </div>

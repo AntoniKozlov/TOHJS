@@ -101,7 +101,10 @@ hr_name++;
  console.log(li_id);
  
  var sve = document.location.href.split ('?');
-    document.getElementById("hrname"+sve[2]).innerHTML=sve[1];
+
+  document.getElementById("hrname"+sve[2]).innerHTML=sve[1];
+  
+
 };
 
  function del(li_id) {
@@ -114,7 +117,10 @@ elem.parentNode.removeChild(elem);
    var rh=document.getElementById("hrname"+hr_name).innerHTML;
    document.location.href = 'hero2.html?'+rh+'?'+hr_name;
   }
-
+function check() {
+  var pole1 = document.getElementById('hero');
+     
+  document.getElementById('addsubmit').disabled = pole1.value ? false : "disabled";}
 
 
 
