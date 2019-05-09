@@ -1,0 +1,179 @@
+<!Doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="shortcut icon" href="favicon.ico">
+	<link href="h.css" type="text/css" media="screen" rel="stylesheet">
+  <link href="dashboard.css" type="text/css" media="screen" rel="stylesheet">
+	<title>AngularTourOfHeroes</title>
+ 
+</head>
+<body>
+
+<h1>Tour of Heroes</h1>
+<nav>
+  <a href="dashboard.html">Dashboard</a>
+  <a href="hero.html" >Heroes</a>
+</nav>
+
+
+<h3>Top Heroes</h3>
+
+<div class="grid grid-pad" id="dash">
+  <!--<a class="col-1-4">
+    <div class="module hero">
+      <h4>{{hero.name}}</h4>
+    </div>
+  </a>-->
+</div>
+
+<div id="search-component">
+  <h4>Hero Search</h4>
+
+  <input type="search" id="search-box" onkeyup="serch()" />
+
+  <ul class="search-result" id="srch">
+   <!-- <li>
+      <a>
+        
+      </a>
+    </li>-->
+  </ul>
+</div>
+
+
+
+<script src="myherojs.js"></script>
+<script type="text/javascript">
+  /*var tri=0,da=1;
+  n = localStorage.getItem('elementNumber');
+  for (i=1;i<=n;i++)
+ {
+  if (localStorage.getItem('li'+i)!=null)
+  {
+    tri++;
+    if (tri <= 4)
+    {
+  var div_dash = document.getElementById("dash") ;
+ var new_a_dash = document.createElement("a") ;
+ var new_div_dash = document.createElement("div") ;
+ var new_h4 = document.createElement("h4") ;
+    
+
+
+  new_a_dash.setAttribute('class', 'col-1-4');
+  new_a_dash.setAttribute('onclick', 'detaildash('+ i +')');
+  new_div_dash.setAttribute('class', 'module hero');
+  new_h4.setAttribute('id', 'dashb'+i);
+  new_h4.innerHTML =  localStorage.getItem('li'+i);
+
+
+ 
+ new_div_dash.appendChild(new_h4) ;
+ new_a_dash.appendChild(new_div_dash) ;
+ div_dash.appendChild(new_a_dash) ;
+ da++;
+}
+else break;
+}
+ }*/
+
+var tri=0,da=1;
+  n = localStorage.getItem('elementNumber');
+  for (i=1;i<=n;i++)
+ {
+  if (localStorage.getItem('li'+i)!=null)
+  {
+    tri++;
+    if (tri <= 4)
+    {
+  var div_dash = document.getElementById("dash") ;
+ var new_a_dash = document.createElement("a") ;
+ var new_div_dash = document.createElement("div") ;
+ var new_h4 = document.createElement("h4") ;
+    
+
+
+  new_a_dash.setAttribute('class', 'col-1-4');
+  new_a_dash.setAttribute('onclick', 'detaildash('+ i +')');
+  new_div_dash.setAttribute('class', 'module hero');
+  new_h4.setAttribute('id', 'dashb'+i);
+  new_h4.innerHTML =  localStorage.getItem('li'+i);
+
+
+ 
+ new_div_dash.appendChild(new_h4) ;
+ new_a_dash.appendChild(new_div_dash) ;
+ div_dash.appendChild(new_a_dash) ;
+ da++;
+}
+else break;
+}
+ }
+
+
+
+</script>
+<script type="text/javascript">
+  function detaildash(tri) {
+   var rh=document.getElementById("dashb"+tri).innerHTML;
+   document.location.href = 'hero2.html?'+rh+'?'+tri+'?2';
+  }
+</script>
+<script type="text/javascript">
+  
+  function serch(){
+     n = localStorage.getItem('elementNumber');
+
+     for (i=1;i<=n;i++)
+     {
+
+      if (localStorage.getItem('li'+i)!=null)
+  {
+
+     if (document.getElementById("search-box").value == localStorage.getItem('li'+i))
+      {
+
+
+        var ul_search = document.getElementById("srch") ;
+        var new_li_search = document.createElement("li") ;
+        var new_a_search = document.createElement("a") ;
+
+
+          new_a_search.setAttribute('id', 'asearch'+i);
+          new_a_search.setAttribute('onclick', 'detailsearch('+ i +')');
+       
+         
+          new_a_search.innerHTML =  localStorage.getItem('li'+i);
+
+
+
+        
+         new_li_search.appendChild(new_a_search) ;
+         ul_search.appendChild(new_li_search) ;
+      }
+    }
+
+  }
+}
+
+
+</script>
+<script type="text/javascript">
+  function detailsearch(tri) {
+   var rh=document.getElementById("asearch"+tri).innerHTML;
+   document.location.href = 'hero2.html?'+rh+'?'+tri+'?2';
+  }
+</script>
+<div *ngIf="messageService.messages.length">
+
+ 
+  <h2>Messages</h2>
+  <button class="clear"
+          (click)="messageService.clear()">clear</button>
+  <div *ngFor='let message of messageService.messages'>  </div>
+
+</div>
+
+</body>
+</html>

@@ -2,11 +2,11 @@
 
 
 
-var length = 1 , li_id=1, hr_name=1;
+var length = 1 , li_id=1, hr_name=1,tri=0;
 
 
 function add_input() {
-
+  
  var p = document.getElementById("inputi") ;
  var new_li = document.createElement("li") ;
  var new_a = document.createElement("a") ;
@@ -42,15 +42,17 @@ function add_input() {
    localStorage.setItem('li'+li_id, new_span2.innerHTML); 
    localStorage.setItem('elementNumber', li_id); 
 
+
 length++;
 li_id++;
 hr_name++;
 
 
 } 
+
 window.onload = function() {
 
-
+  
   n = localStorage.getItem('elementNumber');
   for (i=1;i<=n;i++)
   {
@@ -87,23 +89,55 @@ window.onload = function() {
 
 
 
-
-   
-
-
 length++;
 
 hr_name++;
   }
 
 }
+
+
+  
+  //n = localStorage.getItem('elementNumber');
+  /*for (i=1;i<=n;i++)
+ {
+  if (localStorage.getItem('li'+i)!=null)
+  {
+    tri++;
+    if (tri <= 4)
+    {
+  var div_dash = document.getElementById("dash") ;
+ var new_a_dash = document.createElement("a") ;
+ var new_div_dash = document.createElement("div") ;
+ var new_h4 = document.createElement("h4") ;
+    
+
+
+  new_a_dash.setAttribute('class', 'col-1-4');
+  new_a.setAttribute('onclick', 'detaildash('+ i +')');
+  new_div_dash.setAttribute('class', 'module hero');
+  new_h4.setAttribute('id', 'dashb'+i);
+  new_h4.innerHTML =  localStorage.getItem('li'+i);
+
+
+ 
+ new_div_dash.appendChild(new_h4) ;
+ new_a_dash.appendChild(new_div_dash) ;
+ div_dash.appendChild(new_a_dash) ;
+}
+else break;
+}
+ }*/
+
+
+
  li_id = n == null?1:parseInt(n)+1;
  console.log(li_id);
  
  var sve = document.location.href.split ('?');
 
   document.getElementById("hrname"+sve[2]).innerHTML=sve[1];
-  
+  //document.getElementById("dashb"+sve[2]).innerHTML=sve[1];
 
 };
 
@@ -115,7 +149,7 @@ elem.parentNode.removeChild(elem);
   }
  function detail(hr_name) {
    var rh=document.getElementById("hrname"+hr_name).innerHTML;
-   document.location.href = 'hero2.html?'+rh+'?'+hr_name;
+   document.location.href = 'hero2.html?'+rh+'?'+hr_name+'?1';
   }
 function check() {
   var pole1 = document.getElementById('hero');

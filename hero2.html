@@ -26,7 +26,7 @@
   <div><span>id: </span><span id="heroid"></span></div>
   <div>
     <label>name:
-      <input id="changenamehero" onkeyup="chan()" style="text-transform: capitalize;" placeholder="name"/>
+      <input id="changenamehero" onkeyup="chan()" style="/*text-transform: capitalize;*/" placeholder="name"/>
     </label>
   </div>
   <a href="hero.html"><button onclick="goback()">go back</button></a>
@@ -44,15 +44,26 @@
     var sv=document.getElementById("changenamehero").value;
     console.log(rh[2] +" "+ sv);
      localStorage.setItem('li'+rh[2], sv); 
+
+     if (rh[3] == 1)
    document.location.href = 'hero.html?'+sv+'?'+rh[2];
+ else
+    document.location.href = 'dashboard.html?'+sv+'?'+rh[2];
  
    }
    function goback() {
      
     var sv=document.getElementById("changenamehero").value;
     localStorage.setItem('li'+rh[2], sv); 
+   //document.location.href = 'hero.html?'+rh[1]+'?'+rh[2];
+      
+
+
+if (rh[3] == 1)
    document.location.href = 'hero.html?'+rh[1]+'?'+rh[2];
-  
+ else
+    document.location.href = 'dashboard.html?'+rh[1]+'?'+rh[2];
+
    }
    
   </script>
