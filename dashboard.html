@@ -118,11 +118,13 @@ else break;
   function detaildash(tri) {
    var rh=document.getElementById("dashb"+tri).innerHTML;
    document.location.href = 'hero2.html?'+rh+'?'+tri+'?2';
+
   }
 </script>
 <script type="text/javascript">
-  
+  var kld1=0,kld2=0;
   function serch(){
+     var mes = ["HeroService: fetched heroes", "HeroService: fetched hero id=", "HeroService: updated hero id=", "HeroService: added hero w/ id=", "HeroService: deleted hero id=","HeroService: found heroes matching "];
      n = localStorage.getItem('elementNumber');
 
      for (i=1;i<=n;i++)
@@ -132,6 +134,9 @@ else break;
   {
 
      if (document.getElementById("search-box").value == localStorage.getItem('li'+i))
+    //var tr=localStorage.getItem('li'+i);
+    //var chl=document.getElementById("search-box").value;
+    //if (tr.contains(chl))
       {
 
 
@@ -151,6 +156,15 @@ else break;
         
          new_li_search.appendChild(new_a_search) ;
          ul_search.appendChild(new_li_search) ;
+
+         var new_mes = document.getElementById("mesdiv") ;
+         var new_div_mes = document.createElement("div") ;
+         new_div_mes.setAttribute('id', 'div_mes');
+         new_div_mes.innerHTML =  mes[5]+"\u0022"+document.getElementById("search-box").value+"\u0022";                                                                  
+         new_mes.appendChild(new_div_mes) ;
+         kld1++;
+
+
       }
     }
 
@@ -165,15 +179,71 @@ else break;
    document.location.href = 'hero2.html?'+rh+'?'+tri+'?2';
   }
 </script>
-<div *ngIf="messageService.messages.length">
+<script type="text/javascript">
+  window.onload = function() {
+  var mes = ["HeroService: fetched heroes", "HeroService: fetched hero id=", "HeroService: updated hero id=", "HeroService: added hero w/ id=", "HeroService: deleted hero id=","HeroService: found heroes matching "];
+
+  var sve = document.location.href.split ('?');
+
+ // document.getElementById("hrname"+sve[2]).innerHTML=sve[1];
+  //document.getElementById("dashb"+sve[2]).innerHTML=sve[1];
+
+if (sve[3] == '0'  && sve!=null)
+{
+          var new_mes = document.getElementById("mesdiv") ;
+          var new_div_mes = document.createElement("div") ;
+          new_div_mes.setAttribute('id', 'div_mes');
+          new_div_mes.innerHTML =  mes[2]+sve[2];
+          new_mes.appendChild(new_div_mes) ;
+
+          var new_mes = document.getElementById("mesdiv") ;
+          var new_div_mes = document.createElement("div") ;
+          new_div_mes.setAttribute('id', 'div_mes');
+          new_div_mes.innerHTML =  mes[0];                                                                                 
+          new_mes.appendChild(new_div_mes) ;
+          kld1+=2;
+}
+if (sve[3] == '1'  && sve!=null)
+{
+          var new_mes = document.getElementById("mesdiv") ;
+          var new_div_mes = document.createElement("div") ; 
+          new_div_mes.setAttribute('id', 'div_mes');  
+          new_div_mes.innerHTML =  mes[1]+sve[2];
+          new_mes.appendChild(new_div_mes) ;
+          
+          var new_mes = document.getElementById("mesdiv") ;
+          var new_div_mes = document.createElement("div") ;
+          new_div_mes.setAttribute('id', 'div_mes');
+          new_div_mes.innerHTML =  mes[0];
+          new_mes.appendChild(new_div_mes) ;
+          kld2+=2;
+}
+}
+</script>
+<script type="text/javascript">
+  function rem() {
+   //console.log(kld1+kld2);
+  for (i=0;i<kld1+kld2;i++)
+  {
+    document.getElementById('div_mes').remove(i);
+  }
+  kld1=0;
+  kld2=0;
+  }
+</script>
+
+ 
+  
+  <div>
 
  
   <h2>Messages</h2>
-  <button class="clear"
-          (click)="messageService.clear()">clear</button>
-  <div *ngFor='let message of messageService.messages'>  </div>
+  <button class="clear" onclick="rem()">clear</button>
+  <div id="mesdiv">  </div>
 
 </div>
+
+
 
 </body>
 </html>

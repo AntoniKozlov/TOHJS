@@ -32,6 +32,7 @@
   <a href="hero.html"><button onclick="goback()">go back</button></a>
   <a href="hero.html"><button  onclick="save()">save</button></a>
   <script type="text/javascript">
+ 
     var rh = document.location.href.split ('?');
     document.getElementById("heroname").innerHTML=rh[1];
     document.getElementById("heroid").innerHTML=rh[2];
@@ -44,11 +45,11 @@
     var sv=document.getElementById("changenamehero").value;
     console.log(rh[2] +" "+ sv);
      localStorage.setItem('li'+rh[2], sv); 
-
+arr = localStorage.getItem("mes") ? JSON.parse(localStorage.getItem("mes")) : [];
      if (rh[3] == 1)
-   document.location.href = 'hero.html?'+sv+'?'+rh[2];
+   document.location.href = 'hero.html?'+sv+'?'+rh[2]+'?0';
  else
-    document.location.href = 'dashboard.html?'+sv+'?'+rh[2];
+    document.location.href = 'dashboard.html?'+sv+'?'+rh[2]+'?0';
  
    }
    function goback() {
@@ -62,11 +63,26 @@
 if (rh[3] == 1)
    document.location.href = 'hero.html?'+rh[1]+'?'+rh[2];
  else
-    document.location.href = 'dashboard.html?'+rh[1]+'?'+rh[2];
-
+    document.location.href = 'dashboard.html?'+rh[1]+'?'+rh[2]+'?1';
+    
    }
-   
+
+   window.onload = function() {
+   if (rh[3] == 2)
+   {
+        var mes = ["HeroService: fetched heroes", "HeroService: fetched hero id=", "HeroService: updated hero id=", "HeroService: added hero w/ id=", "HeroService: deleted hero id=","HeroService: found heroes matching "];
+    var new_mes = document.getElementById("mesdiv") ;
+         var new_div_mes = document.createElement("div") ;
+         new_div_mes.setAttribute('id', 'div_mes');
+         new_div_mes.innerHTML =  mes[5]+"\u0022"+rh[1]+"\u0022";                                                                  
+         new_mes.appendChild(new_div_mes) ;
+   }}
   </script>
+  <script type="text/javascript">
+  function rem() {
+    document.getElementById('div_mes').remove();
+  }
+</script>
 </div>
 
 
@@ -78,13 +94,12 @@ if (rh[3] == 1)
 
 
 
-<div *ngIf="messageService.messages.length">
+ <div>
 
  
   <h2>Messages</h2>
-  <button class="clear"
-          (click)="messageService.clear()">clear</button>
-  <div *ngFor='let message of messageService.messages'>  </div>
+  <button class="clear" onclick="rem()">clear</button>
+  <div id="mesdiv">  </div>
 
 </div>
   

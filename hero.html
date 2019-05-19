@@ -45,13 +45,14 @@
 </ul>
 
 
-<div *ngIf="messageService.messages.length">
+<div >
 
  
   <h2>Messages</h2>
-  <button class="clear"
-          (click)="messageService.clear()">clear</button>
-  <div *ngFor='let message of messageService.messages'>  </div>
+  <button class="clear" onclick="rem()">clear</button>
+  <div id="mesdiv">  
+
+  </div>
 
 </div>
 <script type="text/javascript">
