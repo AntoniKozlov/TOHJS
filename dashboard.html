@@ -5,245 +5,184 @@
 	<link rel="shortcut icon" href="favicon.ico">
 	<link href="h.css" type="text/css" media="screen" rel="stylesheet">
   <link href="dashboard.css" type="text/css" media="screen" rel="stylesheet">
-	<title>AngularTourOfHeroes</title>
- 
+  <title>AngularTourOfHeroes</title>
+
 </head>
 <body>
 
-<h1>Tour of Heroes</h1>
-<nav>
-  <a href="dashboard.html">Dashboard</a>
-  <a href="hero.html" >Heroes</a>
-</nav>
+  <h1>Tour of Heroes</h1>
+  <nav>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="hero.html" >Heroes</a>
+  </nav>
 
 
-<h3>Top Heroes</h3>
+  <h3>Top Heroes</h3>
 
-<div class="grid grid-pad" id="dash">
-  <!--<a class="col-1-4">
-    <div class="module hero">
-      <h4>{{hero.name}}</h4>
-    </div>
-  </a>-->
-</div>
+  <div class="grid grid-pad" id="dash">
 
-<div id="search-component">
-  <h4>Hero Search</h4>
+  </div>
 
-  <input type="search" id="search-box" onkeyup="serch()" />
+  <div id="search-component">
+    <h4>Hero Search</h4>
 
-  <ul class="search-result" id="srch">
-   <!-- <li>
-      <a>
-        
-      </a>
-    </li>-->
-  </ul>
-</div>
+    <input type="search" id="search-box" onkeyup="serch();serch2();" />
+
+    <ul class="search-result" id="srch">
+
+    </ul>
+  </div>
 
 
 
-<script src="myherojs.js"></script>
-<script type="text/javascript">
-  /*var tri=0,da=1;
-  n = localStorage.getItem('elementNumber');
-  for (i=1;i<=n;i++)
- {
-  if (localStorage.getItem('li'+i)!=null)
-  {
-    tri++;
-    if (tri <= 4)
+  <script src="myherojs.js"></script>
+  <script type="text/javascript">
+    var tri=0,da=1;
+    n = localStorage.getItem('elementNumber');
+    for (i=1;i<=n;i++)
     {
-  var div_dash = document.getElementById("dash") ;
- var new_a_dash = document.createElement("a") ;
- var new_div_dash = document.createElement("div") ;
- var new_h4 = document.createElement("h4") ;
-    
+      if (localStorage.getItem('li'+i)!=null)
+      {
+        tri++;
+        if (tri <= 4)
+        {
+          var div_dash = document.getElementById("dash") ;
+          var new_a_dash = document.createElement("a") ;
+          var new_div_dash = document.createElement("div") ;
+          var new_h4 = document.createElement("h4") ;
 
+          new_a_dash.setAttribute('class', 'col-1-4');
+          new_a_dash.setAttribute('onclick', 'detaildash('+ i +')');
+          new_div_dash.setAttribute('class', 'module hero');
+          new_h4.setAttribute('id', 'dashb'+i);
+          new_h4.innerHTML =  localStorage.getItem('li'+i);
 
-  new_a_dash.setAttribute('class', 'col-1-4');
-  new_a_dash.setAttribute('onclick', 'detaildash('+ i +')');
-  new_div_dash.setAttribute('class', 'module hero');
-  new_h4.setAttribute('id', 'dashb'+i);
-  new_h4.innerHTML =  localStorage.getItem('li'+i);
-
-
- 
- new_div_dash.appendChild(new_h4) ;
- new_a_dash.appendChild(new_div_dash) ;
- div_dash.appendChild(new_a_dash) ;
- da++;
-}
-else break;
-}
- }*/
-
-var tri=0,da=1;
-  n = localStorage.getItem('elementNumber');
-  for (i=1;i<=n;i++)
- {
-  if (localStorage.getItem('li'+i)!=null)
-  {
-    tri++;
-    if (tri <= 4)
-    {
-  var div_dash = document.getElementById("dash") ;
- var new_a_dash = document.createElement("a") ;
- var new_div_dash = document.createElement("div") ;
- var new_h4 = document.createElement("h4") ;
-    
-
-
-  new_a_dash.setAttribute('class', 'col-1-4');
-  new_a_dash.setAttribute('onclick', 'detaildash('+ i +')');
-  new_div_dash.setAttribute('class', 'module hero');
-  new_h4.setAttribute('id', 'dashb'+i);
-  new_h4.innerHTML =  localStorage.getItem('li'+i);
-
-
- 
- new_div_dash.appendChild(new_h4) ;
- new_a_dash.appendChild(new_div_dash) ;
- div_dash.appendChild(new_a_dash) ;
- da++;
-}
-else break;
-}
- }
-
-
-
-</script>
-<script type="text/javascript">
-  function detaildash(tri) {
-   var rh=document.getElementById("dashb"+tri).innerHTML;
-   document.location.href = 'hero2.html?'+rh+'?'+tri+'?2';
-
-  }
-</script>
-<script type="text/javascript">
+          new_div_dash.appendChild(new_h4) ;
+          new_a_dash.appendChild(new_div_dash) ;
+          div_dash.appendChild(new_a_dash) ;
+          da++;
+        }
+        else break;
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    function detaildash(tri) {
+     var rh=document.getElementById("dashb"+tri).innerHTML;
+     document.location.href = 'hero2.html?'+rh+'?'+tri+'?2';
+   }
+ </script>
+ <script type="text/javascript">
   var kld1=0,kld2=0;
   function serch(){
-     var mes = ["HeroService: fetched heroes", "HeroService: fetched hero id=", "HeroService: updated hero id=", "HeroService: added hero w/ id=", "HeroService: deleted hero id=","HeroService: found heroes matching "];
-     n = localStorage.getItem('elementNumber');
+    var find=0;
+    var mes = ["HeroService: fetched heroes", "HeroService: fetched hero id=", "HeroService: updated hero id=", "HeroService: added hero w/ id=", "HeroService: deleted hero id=","HeroService: found heroes matching "];
+    n = localStorage.getItem('elementNumber');
+    var ul_sear = document.getElementById("srch") ;
+    while (ul_sear.firstChild){
+      ul_sear.removeChild(ul_sear.firstChild);
+    }
 
-     for (i=1;i<=n;i++)
-     {
+    for (i=1;i<=n;i++)
+    {
 
       if (localStorage.getItem('li'+i)!=null)
-  {
+      { 
 
-     if (document.getElementById("search-box").value == localStorage.getItem('li'+i))
-    //var tr=localStorage.getItem('li'+i);
-    //var chl=document.getElementById("search-box").value;
-    //if (tr.contains(chl))
-      {
-
-
+       if ( localStorage.getItem('li'+i).includes(document.getElementById("search-box").value) == true)
+       {
         var ul_search = document.getElementById("srch") ;
         var new_li_search = document.createElement("li") ;
         var new_a_search = document.createElement("a") ;
 
-
-          new_a_search.setAttribute('id', 'asearch'+i);
-          new_a_search.setAttribute('onclick', 'detailsearch('+ i +')');
-       
-         
-          new_a_search.innerHTML =  localStorage.getItem('li'+i);
-
-
-
+        new_a_search.setAttribute('id', 'asearch'+i);
+        new_a_search.setAttribute('onclick', 'detailsearch('+ i +')');
+        new_a_search.innerHTML =  localStorage.getItem('li'+i);
         
-         new_li_search.appendChild(new_a_search) ;
-         ul_search.appendChild(new_li_search) ;
+        new_li_search.appendChild(new_a_search) ;
+        ul_search.appendChild(new_li_search) ;
 
-         var new_mes = document.getElementById("mesdiv") ;
-         var new_div_mes = document.createElement("div") ;
-         new_div_mes.setAttribute('id', 'div_mes');
-         new_div_mes.innerHTML =  mes[5]+"\u0022"+document.getElementById("search-box").value+"\u0022";                                                                  
-         new_mes.appendChild(new_div_mes) ;
-         kld1++;
-
-
+        find++;
       }
+
     }
-
+    
   }
+  if (find>0)
+  {
+   var new_mes = document.getElementById("mesdiv") ;
+   var new_div_mes = document.createElement("div") ;
+   new_div_mes.setAttribute('id', 'div_mes');
+   new_div_mes.innerHTML =  mes[5]+"\u0022"+document.getElementById("search-box").value+"\u0022";                           
+   new_mes.appendChild(new_div_mes) ;
+   kld1++;
+ }
+
 }
-
-
 </script>
+
 <script type="text/javascript">
   function detailsearch(tri) {
    var rh=document.getElementById("asearch"+tri).innerHTML;
    document.location.href = 'hero2.html?'+rh+'?'+tri+'?2';
-  }
+ }
 </script>
+
 <script type="text/javascript">
   window.onload = function() {
-  var mes = ["HeroService: fetched heroes", "HeroService: fetched hero id=", "HeroService: updated hero id=", "HeroService: added hero w/ id=", "HeroService: deleted hero id=","HeroService: found heroes matching "];
+    var mes = ["HeroService: fetched heroes", "HeroService: fetched hero id=", "HeroService: updated hero id=", "HeroService: added hero w/ id=", "HeroService: deleted hero id=","HeroService: found heroes matching "];
 
-  var sve = document.location.href.split ('?');
+    var sve = document.location.href.split ('?');
 
  // document.getElementById("hrname"+sve[2]).innerHTML=sve[1];
   //document.getElementById("dashb"+sve[2]).innerHTML=sve[1];
+  if (sve[3] == '0'  && sve!=null)
+  {
+    var new_mes = document.getElementById("mesdiv") ;
+    var new_div_mes = document.createElement("div") ;
+    new_div_mes.setAttribute('id', 'div_mes');
+    new_div_mes.innerHTML =  mes[2]+sve[2];
+    new_mes.appendChild(new_div_mes) ;
 
-if (sve[3] == '0'  && sve!=null)
-{
-          var new_mes = document.getElementById("mesdiv") ;
-          var new_div_mes = document.createElement("div") ;
-          new_div_mes.setAttribute('id', 'div_mes');
-          new_div_mes.innerHTML =  mes[2]+sve[2];
-          new_mes.appendChild(new_div_mes) ;
+    var new_mes = document.getElementById("mesdiv") ;
+    var new_div_mes = document.createElement("div") ;
+    new_div_mes.setAttribute('id', 'div_mes');
+    new_div_mes.innerHTML =  mes[0];                                                                                 
+    new_mes.appendChild(new_div_mes) ;
+    kld1+=2;
+  }
+  if (sve[3] == '1'  && sve!=null)
+  {
+    var new_mes = document.getElementById("mesdiv") ;
+    var new_div_mes = document.createElement("div") ; 
+    new_div_mes.setAttribute('id', 'div_mes');  
+    new_div_mes.innerHTML =  mes[1]+sve[2];
+    new_mes.appendChild(new_div_mes) ;
 
-          var new_mes = document.getElementById("mesdiv") ;
-          var new_div_mes = document.createElement("div") ;
-          new_div_mes.setAttribute('id', 'div_mes');
-          new_div_mes.innerHTML =  mes[0];                                                                                 
-          new_mes.appendChild(new_div_mes) ;
-          kld1+=2;
-}
-if (sve[3] == '1'  && sve!=null)
-{
-          var new_mes = document.getElementById("mesdiv") ;
-          var new_div_mes = document.createElement("div") ; 
-          new_div_mes.setAttribute('id', 'div_mes');  
-          new_div_mes.innerHTML =  mes[1]+sve[2];
-          new_mes.appendChild(new_div_mes) ;
-          
-          var new_mes = document.getElementById("mesdiv") ;
-          var new_div_mes = document.createElement("div") ;
-          new_div_mes.setAttribute('id', 'div_mes');
-          new_div_mes.innerHTML =  mes[0];
-          new_mes.appendChild(new_div_mes) ;
-          kld2+=2;
-}
+    var new_mes = document.getElementById("mesdiv") ;
+    var new_div_mes = document.createElement("div") ;
+    new_div_mes.setAttribute('id', 'div_mes');
+    new_div_mes.innerHTML =  mes[0];
+    new_mes.appendChild(new_div_mes) ;
+    kld2+=2;
+  }
 }
 </script>
+
 <script type="text/javascript">
   function rem() {
-   //console.log(kld1+kld2);
-  for (i=0;i<kld1+kld2;i++)
-  {
-    document.getElementById('div_mes').remove(i);
-  }
-  kld1=0;
-  kld2=0;
+    for (i=0;i<kld1+kld2;i++)
+    {
+      document.getElementById('div_mes').remove(i);
+    }
+    kld1=0;
+    kld2=0;
   }
 </script>
-
- 
-  
-  <div>
-
- 
+<div>
   <h2>Messages</h2>
   <button class="clear" onclick="rem()">clear</button>
   <div id="mesdiv">  </div>
-
 </div>
-
-
-
 </body>
 </html>

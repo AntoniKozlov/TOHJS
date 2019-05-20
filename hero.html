@@ -8,57 +8,33 @@
  <script src="myherojs.js"></script>
 </head>
 <body>
+  <h1>Tour of Heroes</h1>
+  <nav>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="hero.html" >Heroes</a>
+  </nav>
 
-<h1>Tour of Heroes</h1>
-<nav>
-  <a href="dashboard.html">Dashboard</a>
-  <a href="hero.html" >Heroes</a>
-</nav>
+  <h2 id="dfg">My Heroes</h2>
 
+  <div>
+    <label>Hero name:
+      <input type="text" id="hero" onkeyup="check();"/>
+    </label>
 
-<h2 id="dfg">My Heroes</h2>
-
-<div>
-  <label>Hero name:
-    <input type="text" id="hero" onkeyup="check();"/>
-  </label>
-  <!-- (click) passes input value to add() and then clears the input -->
- 
-
-
-
-
-
-
- 
-
-  <button type="submit" id="addsubmit"  onclick ="add_input();" disabled>
-    add
-  </button>
-</div>
-
-<ul class="heroes" id="inputi">
-  <!--<li>
-    <a><span class="badge">           </span>          </a>
-    <button class="delete" title="delete hero">   X </button>
-  </li>-->
-</ul>
-
-
-<div >
-
- 
-  <h2>Messages</h2>
-  <button class="clear" onclick="rem()">clear</button>
-  <div id="mesdiv">  
-
+    <button type="submit" id="addsubmit"  onclick ="add_input();" disabled>
+      add
+    </button>
   </div>
 
-</div>
-<script type="text/javascript">
-  
+  <ul class="heroes" id="inputi">
 
-  
-</script>
+  </ul>
+
+  <div>
+    <h2>Messages</h2>
+    <button class="clear" onclick="rem()">clear</button>
+    <div id="mesdiv"></div>
+  </div>
+
 </body>
 </html>
